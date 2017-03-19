@@ -32,7 +32,6 @@ public class Index {
         BasicComponent projectBlogContainer =  new BasicComponent();
         projectBlogContainer.setComponentType("componentcontainer");
         projectBlogContainer.setSourceUrl("http://localhost:8080/index/projectBlogContainer");
-        projectBlogContainer.setStyle("projectBlogContainer");
         rootComponents.add(projectBlogContainer);
         return mapper.writerWithDefaultPrettyPrinter().writeValueAsString(rootComponents);
     }
@@ -81,7 +80,7 @@ public class Index {
     public String aboutMeAboutMeLink() throws JsonProcessingException{
     	Link aboutMeAboutMeLink = new Link();
     	aboutMeAboutMeLink.setText("About me");
-    	aboutMeAboutMeLink.setStyle("");
+    	aboutMeAboutMeLink.setStyle("btn btn-primary aboutMeCardLink");
     	aboutMeAboutMeLink.setUrl("/aboutme");
     	return mapper.writerWithDefaultPrettyPrinter().writeValueAsString(aboutMeAboutMeLink);
     	
@@ -90,7 +89,7 @@ public class Index {
     public String aboutMeAboutMeResume() throws JsonProcessingException{
     	Link aboutMeResume = new Link();
     	aboutMeResume.setText("Resume");
-    	aboutMeResume.setStyle("");
+    	aboutMeResume.setStyle("btn btn-primary aboutMeCardLink");
     	aboutMeResume.setUrl("/resume");
     	return mapper.writerWithDefaultPrettyPrinter().writeValueAsString(aboutMeResume);
     }
@@ -101,12 +100,13 @@ public class Index {
     	BasicComponent projectCard = new BasicComponent();
     	projectCard.setComponentType("card");
     	projectCard.setSourceUrl("http://localhost:8080/index/projectBlogContainer/projectCard");
+    	projectCard.setStyle("projectBlogCard");
     	projectBlogComponents.add(projectCard);
     	
     	BasicComponent blogCard = new BasicComponent();
     	blogCard.setComponentType("card");
     	blogCard.setSourceUrl("http://localhost:8080/index/projectBlogContainer/blogCard");
-    	projectBlogComponents.add(blogCard);
+    	//projectBlogComponents.add(blogCard);
     	return mapper.writerWithDefaultPrettyPrinter().writeValueAsString(projectBlogComponents);
     }
     @RequestMapping(value="/projectBlogContainer/projectCard", method=RequestMethod.GET, produces="application/json")
@@ -152,7 +152,7 @@ public class Index {
     @RequestMapping(value="/projectBlogContainer/projectCard/singleProjectLink", method=RequestMethod.GET, produces="application/json")
     public String singleProjectLink() throws JsonProcessingException{
     	Link singleProjectLink = new Link();
-    	singleProjectLink.setStyle("");
+    	singleProjectLink.setStyle("btn btn-primary aboutMeCardLink");
     	singleProjectLink.setText("Problem Repository");
     	singleProjectLink.setUrl("/problemRepository");
     	return mapper.writerWithDefaultPrettyPrinter().writeValueAsString(singleProjectLink);
@@ -160,7 +160,7 @@ public class Index {
     @RequestMapping(value="/projectBlogContainer/projectCard/projectPortfolioLink", method=RequestMethod.GET, produces="application/json")
     public String portfolioLink() throws JsonProcessingException{
     	Link portfolioLink = new Link();
-    	portfolioLink.setStyle("");
+    	portfolioLink.setStyle("btn btn-primary aboutMeCardLink");
     	portfolioLink.setUrl("/projectPortfolio");
     	portfolioLink.setText("/projectPortFolio");
     	return mapper.writerWithDefaultPrettyPrinter().writeValueAsString(portfolioLink);
