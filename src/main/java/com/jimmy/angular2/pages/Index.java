@@ -26,12 +26,13 @@ public class Index {
         BasicComponent aboutMeComponent = new BasicComponent();
         aboutMeComponent.setComponentType("card");
         aboutMeComponent.setSourceUrl("http://localhost:8080/index/aboutMeCard" );
-        aboutMeComponent.setStyle("aboutMeCard");
+        aboutMeComponent.setStyle("card aboutMeCard");
         rootComponents.add(aboutMeComponent);
         
         BasicComponent projectBlogContainer =  new BasicComponent();
         projectBlogContainer.setComponentType("componentcontainer");
         projectBlogContainer.setSourceUrl("http://localhost:8080/index/projectBlogContainer");
+        projectBlogContainer.setStyle("projectBlogContainer");
         rootComponents.add(projectBlogContainer);
         return mapper.writerWithDefaultPrettyPrinter().writeValueAsString(rootComponents);
     }
@@ -66,22 +67,22 @@ public class Index {
     public String aboutMeImage() throws JsonProcessingException{
     	BasicComponentContent aboutMeImage = new BasicComponentContent();
     	aboutMeImage.setContent("images/jimmy.jpg");
-    	aboutMeImage.setStyle("card-img-top");
+    	aboutMeImage.setStyle("card-image");
     	return mapper.writerWithDefaultPrettyPrinter().writeValueAsString(aboutMeImage);
     }
     @RequestMapping(value="/aboutMeCard/aboutMeText", method=RequestMethod.GET, produces="application/json")
     public String aboutMeText() throws JsonProcessingException{
     	BasicComponentContent aboutMeImage = new BasicComponentContent();
     	aboutMeImage.setContent("Hi, my name is obviously Jimmy Chen. I am an enterprising full stack software developer, mostly messing around but occaisonally building cool stuff. Thank you for visiting my website.");
-    	aboutMeImage.setStyle("card-text");
+    	aboutMeImage.setStyle("card-content");
     	return mapper.writerWithDefaultPrettyPrinter().writeValueAsString(aboutMeImage);
     }
     @RequestMapping(value="/aboutMeCard/aboutMe" , method=RequestMethod.GET, produces="application/json")
     public String aboutMeAboutMeLink() throws JsonProcessingException{
     	Link aboutMeAboutMeLink = new Link();
     	aboutMeAboutMeLink.setText("About me");
-    	aboutMeAboutMeLink.setStyle("btn btn-primary aboutMeCardLink");
-    	aboutMeAboutMeLink.setUrl("/aboutme");
+    	aboutMeAboutMeLink.setStyle("card-action");
+    	aboutMeAboutMeLink.setUrl("#");
     	return mapper.writerWithDefaultPrettyPrinter().writeValueAsString(aboutMeAboutMeLink);
     	
     }
@@ -89,8 +90,8 @@ public class Index {
     public String aboutMeAboutMeResume() throws JsonProcessingException{
     	Link aboutMeResume = new Link();
     	aboutMeResume.setText("Resume");
-    	aboutMeResume.setStyle("btn btn-primary aboutMeCardLink");
-    	aboutMeResume.setUrl("/resume");
+    	aboutMeResume.setStyle("card-action");
+    	aboutMeResume.setUrl("#");
     	return mapper.writerWithDefaultPrettyPrinter().writeValueAsString(aboutMeResume);
     }
     @RequestMapping(value="/projectBlogContainer", method=RequestMethod.GET, produces="application/json")
@@ -100,13 +101,14 @@ public class Index {
     	BasicComponent projectCard = new BasicComponent();
     	projectCard.setComponentType("card");
     	projectCard.setSourceUrl("http://localhost:8080/index/projectBlogContainer/projectCard");
-    	projectCard.setStyle("projectBlogCard");
+    	projectCard.setStyle("card projectCard");
     	projectBlogComponents.add(projectCard);
     	
     	BasicComponent blogCard = new BasicComponent();
     	blogCard.setComponentType("card");
     	blogCard.setSourceUrl("http://localhost:8080/index/projectBlogContainer/blogCard");
-    	//projectBlogComponents.add(blogCard);
+    	blogCard.setStyle("card blogCard");
+    	projectBlogComponents.add(blogCard);
     	return mapper.writerWithDefaultPrettyPrinter().writeValueAsString(projectBlogComponents);
     }
     @RequestMapping(value="/projectBlogContainer/projectCard", method=RequestMethod.GET, produces="application/json")
@@ -139,30 +141,30 @@ public class Index {
     public String projectCardImage() throws JsonProcessingException{
     	BasicComponentContent projectImage = new BasicComponentContent();
     	projectImage.setContent("images/puzzle.png");
-    	projectImage.setStyle("card-img-top");
+    	projectImage.setStyle("card-image");
     	return mapper.writerWithDefaultPrettyPrinter().writeValueAsString(projectImage);
     }
     @RequestMapping(value="/projectBlogContainer/projectCard/projectCardText", method=RequestMethod.GET, produces="application/json")
     public String projectCardText() throws JsonProcessingException{
     	BasicComponentContent projectText = new BasicComponentContent();
     	projectText.setContent("I find programming problems fun, so one of my projects is my portfolio of problems and solutions");
-    	projectText.setStyle("card-text");
+    	projectText.setStyle("card-content");
     	return mapper.writerWithDefaultPrettyPrinter().writeValueAsString(projectText);
     }
     @RequestMapping(value="/projectBlogContainer/projectCard/singleProjectLink", method=RequestMethod.GET, produces="application/json")
     public String singleProjectLink() throws JsonProcessingException{
     	Link singleProjectLink = new Link();
-    	singleProjectLink.setStyle("btn btn-primary aboutMeCardLink");
+    	singleProjectLink.setStyle("card-action");
     	singleProjectLink.setText("Problem Repository");
-    	singleProjectLink.setUrl("/problemRepository");
+    	singleProjectLink.setUrl("#");
     	return mapper.writerWithDefaultPrettyPrinter().writeValueAsString(singleProjectLink);
     }
     @RequestMapping(value="/projectBlogContainer/projectCard/projectPortfolioLink", method=RequestMethod.GET, produces="application/json")
     public String portfolioLink() throws JsonProcessingException{
     	Link portfolioLink = new Link();
-    	portfolioLink.setStyle("btn btn-primary aboutMeCardLink");
-    	portfolioLink.setUrl("/projectPortfolio");
-    	portfolioLink.setText("/projectPortFolio");
+    	portfolioLink.setStyle("card-action");
+    	portfolioLink.setUrl("#");
+    	portfolioLink.setText("Project PortFolio");
     	return mapper.writerWithDefaultPrettyPrinter().writeValueAsString(portfolioLink);
     }
     
@@ -193,4 +195,34 @@ public class Index {
     	return mapper.writerWithDefaultPrettyPrinter().writeValueAsString(blogCardComponents);
     }
     
+    @RequestMapping(value="/projectBlogContainer/blogCard/blogImage", method=RequestMethod.GET, produces="application/json")
+    public String blogImage() throws JsonProcessingException{
+    	BasicComponentContent projectImage = new BasicComponentContent();
+    	projectImage.setContent("images/mountain.jpg");
+    	projectImage.setStyle("card-image");
+    	return mapper.writerWithDefaultPrettyPrinter().writeValueAsString(projectImage);	
+    }
+    @RequestMapping(value="projectBlogContainer/blogCard/blogText", method=RequestMethod.GET, produces="application/json")
+    public String blogText() throws JsonProcessingException{
+    	BasicComponentContent blogText = new BasicComponentContent();
+    	blogText.setContent("Sample Text blurb Sample Text blurb Sample Text blurb Sample Text blurb ");
+    	blogText.setStyle("card-content");
+    	return mapper.writerWithDefaultPrettyPrinter().writeValueAsString(blogText);	
+    }
+    @RequestMapping(value="projectBlogContainer/blogCard/blogLink", method=RequestMethod.GET, produces="application/json")
+    public String blogLink() throws JsonProcessingException{
+    	Link blogLink = new Link();
+    	blogLink.setStyle("card-action");
+    	blogLink.setUrl("#");
+    	blogLink.setText("Read more");
+    	return mapper.writerWithDefaultPrettyPrinter().writeValueAsString(blogLink);
+    }
+    @RequestMapping(value="projectBlogContainer/blogCard/archiveLink", method=RequestMethod.GET, produces="application/json")
+    public String archiveLink() throws JsonProcessingException{
+    	Link archiveLink = new Link();
+    	archiveLink.setStyle("card-action");
+    	archiveLink.setUrl("#");
+    	archiveLink.setText("Blog Archive");
+    	return mapper.writerWithDefaultPrettyPrinter().writeValueAsString(archiveLink);
+    }
 }
