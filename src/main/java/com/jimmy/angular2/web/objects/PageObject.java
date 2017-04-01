@@ -10,6 +10,7 @@ public class PageObject {
 
 	private String componentType;
 	private String baseUrl;
+	private String elementUrl;
 	private List<PageObject> childPageObjects;
 
 	private String content;
@@ -54,6 +55,14 @@ public class PageObject {
 
 	public void setBaseUrl(String baseUrl) {
 		this.baseUrl = baseUrl;
+	}
+
+	public String getElementUrl() {
+		return elementUrl;
+	}
+
+	public void setElementUrl(String elementUrl) {
+		this.elementUrl = elementUrl;
 	}
 
 	public List<PageObject> getChildPageObjects() {

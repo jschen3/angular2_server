@@ -1,4 +1,4 @@
-package com.jimmy.angular2.objects;
+package com.jimmy.angular2.web.objects;
 
 public class BasicComponentContent {
 	private String content;

@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
-@ComponentScan(basePackages = {"com.jimmy.angular2.pages"})
+@ComponentScan(basePackages = {"com.jimmy.angular2.web.services"})
 public class Application {
 
     public static void main(String[] args) {

@@ -6,23 +6,26 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.jimmy.angular2.objects.BasicComponent;
-import com.jimmy.angular2.objects.BasicComponentContent;
-import com.jimmy.angular2.objects.Link;
+import com.jimmy.angular2.constants.Constants;
 import com.jimmy.angular2.web.objects.BaseComponentTypeEnum;
+import com.jimmy.angular2.web.objects.BasicComponent;
+import com.jimmy.angular2.web.objects.BasicComponentContent;
+import com.jimmy.angular2.web.objects.Link;
 import com.jimmy.angular2.web.objects.PageObject;
-
+@RestController
+@CrossOrigin
 public class PageService {
-	
-	@RequestMapping(value="/{page}", method=RequestMethod.GET, produces="application/json")
+	@RequestMapping(value="pages/{page}", method=RequestMethod.GET, produces="application/json")
 	public String getContainer(@PathVariable("page") String page, @RequestParam(value="component", required=false) String[] componentArray) throws Exception{
 		PageObject basePageObject = getBasePageObject(page);
 		ObjectMapper mapper = new ObjectMapper();
@@ -30,7 +33,7 @@ public class PageService {
 		if (componentArray==null)
 			componentPath=null;
 		else{
-			componentPath=(ArrayList<String>) Arrays.asList(componentArray);
+			componentPath=new ArrayList<String>(Arrays.asList(componentArray));
 		}
 		PageObject finalPageObject=findEndPageObject(basePageObject, componentPath);
 		if (finalPageObject.getChildPageObjects()==null){
@@ -71,7 +74,7 @@ public class PageService {
 			List<PageObject> childrenPageObjects = basePageObject.getChildPageObjects();
 			String findUrl = componentPath.get(0);
 			for(PageObject childPageObject:childrenPageObjects){
-				if (childPageObject.getBaseUrl().equals(findUrl)){
+				if (childPageObject.getElementUrl().equals(findUrl)){
 					componentPath.remove(0);
 					return findEndPageObject(childPageObject, componentPath);
 				}
@@ -81,7 +84,7 @@ public class PageService {
 		
 	}
 	private PageObject getBasePageObject(String page) throws JsonParseException, JsonMappingException, IOException{
-		String pagePath = "pages/"+page+".json";
+		String pagePath = Constants.PAGE_ROOT_PATH+"/"+page+".json";
 		File pageFile = new File(pagePath);
 		if (!pageFile.exists())
 			return null;
@@ -92,15 +95,17 @@ public class PageService {
 		
 	}
 	private String createPageUrl(String baseUrl, String page) throws Exception{
-		String homeUrl="http://localhost:8080";
-		String pageUrl=homeUrl+"/"+page;
-		if (baseUrl.startsWith(homeUrl+"/"+page+"?")){
-			String ending=baseUrl.substring(homeUrl.length()+page.length()+1);
+		String expectedUrl=Constants.BASE_URL+"/"+page;
+		String pageUrl=expectedUrl+"?";
+		if (baseUrl.startsWith(expectedUrl)){
+			String ending=baseUrl.substring(expectedUrl.length()+1);
 			String[] sections=ending.split("/");
 			for(int i=0;i<sections.length;i++){
-				pageUrl+="component="+sections[i]+"&";
 				if (i==sections.length-1){
 					pageUrl+="component="+sections[i];
+				}
+				else{
+					pageUrl+="component="+sections[i]+"&";
 				}
 			}
 			return pageUrl;

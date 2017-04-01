@@ -1,0 +1,105 @@
+{
+  "baseUrl" : "http://localhost:8080/index",
+  "elementUrl" : "index",
+  "childPageObjects" : [ {
+    "componentType" : "card",
+    "baseUrl" : "http://localhost:8080/index/aboutMeCard",
+    "elementUrl" : "aboutMeCard",
+    "childPageObjects" : [ {
+      "componentType" : "image",
+      "baseUrl" : "http://localhost:8080/index/aboutMeCard/aboutMeImage",
+      "elementUrl" : "aboutMeImage",
+      "content" : "images/jimmy.jpg",
+      "style" : "card-image"
+    }, {
+      "componentType" : "text",
+      "baseUrl" : "http://localhost:8080/index/aboutMeCard/aboutMeText",
+      "elementUrl" : "aboutMeText",
+      "content" : "Hi, my name is obviously Jimmy Chen. I am an enterprising full stack software developer, mostly messing around but occaisonally building cool stuff. Thank you for visiting my website."
+    }, {
+      "componentType" : "link",
+      "baseUrl" : "http://localhost:8080/index/aboutMeCard/aboutMe",
+      "elementUrl" : "aboutMe",
+      "content" : "About me",
+      "style" : "card-action",
+      "linkUrl" : "#"
+    }, {
+      "componentType" : "link",
+      "baseUrl" : "http://localhost:8080/index/aboutMeCard/resume",
+      "elementUrl" : "resume",
+      "content" : "Resume",
+      "style" : "card-action",
+      "linkUrl" : "#"
+    } ],
+    "style" : "card aboutMeCard"
+  }, {
+    "componentType" : "componentcontainer",
+    "baseUrl" : "http://localhost:8080/index/projectBlogContainer",
+    "elementUrl" : "projectBlogContainer",
+    "childPageObjects" : [ {
+      "componentType" : "card",
+      "baseUrl" : "http://localhost:8080/index/projectBlogContainer/projectCard",
+      "elementUrl" : "projectCard",
+      "childPageObjects" : [ {
+        "componentType" : "image",
+        "baseUrl" : "http://localhost:8080/index/projectBlogContainer/projectCard/projectCardImage",
+        "elementUrl" : "projectCardImage",
+        "content" : "images/puzzle.png"
+      }, {
+        "componentType" : "text",
+        "baseUrl" : "http://localhost:8080/index/projectBlogContainer/projectCard/projectCardText",
+        "elementUrl" : "projectCardText",
+        "content" : "I find programming problems fun, so one of my projects is my portfolio of problems and solutions",
+        "style" : "cart-content"
+      }, {
+        "componentType" : "link",
+        "baseUrl" : "http://localhost:8080/index/projectBlogContainer/projectCard/singleProjectLink",
+        "elementUrl" : "singleProjectLink",
+        "content" : "Problem Repository",
+        "style" : "card-action",
+        "linkUrl" : "#"
+      }, {
+        "componentType" : "link",
+        "baseUrl" : "http://localhost:8080/index/projectBlogContainer/projectCard/projectPortfolioLink",
+        "elementUrl" : "projectPortfolioLink",
+        "content" : "Project Portfolio",
+        "style" : "card-action",
+        "linkUrl" : "#"
+      } ],
+      "style" : "card blogCard"
+    }, {
+      "componentType" : "card",
+      "baseUrl" : "http://localhost:8080/index/projectBlogContainer/blogCard",
+      "elementUrl" : "blogCard",
+      "childPageObjects" : [ {
+        "componentType" : "image",
+        "baseUrl" : "http://localhost:8080/index/projectBlogContainer/blogCard/blogImage",
+        "elementUrl" : "blogImage",
+        "content" : "images/mountain.jpg",
+        "style" : "card-image"
+      }, {
+        "componentType" : "text",
+        "baseUrl" : "http://localhost:8080/index/projectBlogContainer/blogCard/blogText",
+        "elementUrl" : "blogText",
+        "content" : "Sample Text blurb Sample Text blurb Sample Text blurb Sample Text blurb ",
+        "style" : "card-content"
+      }, {
+        "componentType" : "link",
+        "baseUrl" : "http://localhost:8080/index/projectBlogContainer/blogCard/blogLink",
+        "elementUrl" : "blogLink",
+        "content" : "Read More",
+        "style" : "card-action",
+        "linkUrl" : "#"
+      }, {
+        "componentType" : "link",
+        "baseUrl" : "http://localhost:8080/index/projectBlogContainer/blogCard/archiveLink",
+        "elementUrl" : "archiveLink",
+        "content" : "Blog Archive",
+        "style" : "card-action",
+        "linkUrl" : "#"
+      } ],
+      "style" : "card"
+    } ],
+    "style" : "projectBlogContainer"
+  } ]
+}
