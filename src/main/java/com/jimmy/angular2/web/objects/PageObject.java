@@ -8,6 +8,13 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 @JsonInclude(Include.NON_NULL)
 public class PageObject {
 
+	@Override
+	public String toString() {
+		return "PageObject [componentType=" + componentType + ", baseUrl=" + baseUrl + ", elementUrl=" + elementUrl
+				+ ", childPageObjects=" + childPageObjects + ", content=" + content + ", style=" + style + ", linkUrl="
+				+ linkUrl + "]";
+	}
+
 	private String componentType;
 	private String baseUrl;
 	private String elementUrl;

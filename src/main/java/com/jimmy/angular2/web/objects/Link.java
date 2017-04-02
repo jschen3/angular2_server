@@ -1,20 +1,26 @@
 package com.jimmy.angular2.web.objects;
 
 public class Link {
-	private String text;
-	private String url;
+	private String content;
+	private String linkUrl;
 	private String style;
-	public String getText() {
-		return text;
+	public Link(){};
+	public Link(String text, String url, String style){
+		this.content=text;
+		this.linkUrl=url;
+		this.style=style;
 	}
-	public void setText(String text) {
-		this.text = text;
+	public String getContent() {
+		return content;
 	}
-	public String getUrl() {
-		return url;
+	public void setContent(String content) {
+		this.content = content;
 	}
-	public void setUrl(String url) {
-		this.url = url;
+	public String getLinkUrl() {
+		return linkUrl;
+	}
+	public void setLinkUrl(String linkUrl) {
+		this.linkUrl = linkUrl;
 	}
 	public String getStyle() {
 		return style;
@@ -22,5 +28,6 @@ public class Link {
 	public void setStyle(String style) {
 		this.style = style;
 	}
+	
 	
 }

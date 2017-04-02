@@ -11,10 +11,11 @@ import com.jimmy.angular2.constants.Constants;
 import com.jimmy.angular2.web.objects.BaseComponentTypeEnum;
 import com.jimmy.angular2.web.objects.ContainerComponentTypeEnum;
 import com.jimmy.angular2.web.objects.PageObject;
+import com.jimmy.angular2.web.util.PageObjectUtility;
 
-public class IndexPage {
-	public static PageObject initIndexPage(){
-		String baseUrl = Constants.BASE_URL+"/index";
+public class GenerateIndexPage {
+	public static PageObject initIndexPage() throws Exception{
+		String baseUrl = Constants.BASE_PAGE_URL+"/index";
 		PageObject indexPageObject = new PageObject();
 		indexPageObject.setBaseUrl(baseUrl);
 		indexPageObject.setComponentType(null);
@@ -22,13 +23,13 @@ public class IndexPage {
 		List<PageObject> indexContainerChildren = new ArrayList<PageObject>();
 		PageObject aboutMeCard = new PageObject();
 		aboutMeCard.setComponentType(ContainerComponentTypeEnum.CARD.getType());
-		aboutMeCard.setBaseUrl(baseUrl+"/aboutMeCard");
+		aboutMeCard.setBaseUrl(PageObjectUtility.createPageUrl(baseUrl+"/aboutMeCard", "index"));
 		aboutMeCard.setElementUrl("aboutMeCard");
 		aboutMeCard.setStyle("card aboutMeCard");
 		
 		List<PageObject> aboutMeCardChildren = new ArrayList<PageObject>();
 		PageObject aboutMeImage = new PageObject();
-		aboutMeImage.setBaseUrl(baseUrl+"/aboutMeCard/aboutMeImage");
+		aboutMeImage.setBaseUrl(PageObjectUtility.createPageUrl(baseUrl+"/aboutMeCard/aboutMeImage", "index"));
 		aboutMeImage.setElementUrl("aboutMeImage");
 		aboutMeImage.setStyle("card-image");
 		aboutMeImage.setContent("images/jimmy.jpg");
@@ -36,14 +37,14 @@ public class IndexPage {
 		aboutMeCardChildren.add(aboutMeImage);
 		
 		PageObject aboutMeText = new PageObject();
-		aboutMeText.setBaseUrl(baseUrl+"/aboutMeCard/aboutMeText");
+		aboutMeText.setBaseUrl(PageObjectUtility.createPageUrl(baseUrl+"/aboutMeCard/aboutMeText", "index"));
 		aboutMeText.setElementUrl("aboutMeText");
 		aboutMeText.setComponentType(BaseComponentTypeEnum.TEXT.getType());
 		aboutMeText.setContent("Hi, my name is obviously Jimmy Chen. I am an enterprising full stack software developer, mostly messing around but occaisonally building cool stuff. Thank you for visiting my website.");
 		aboutMeCardChildren.add(aboutMeText);
 		
 		PageObject aboutMeAboutMeLink = new PageObject();
-		aboutMeAboutMeLink.setBaseUrl(baseUrl+"/aboutMeCard/aboutMe");
+		aboutMeAboutMeLink.setBaseUrl(PageObjectUtility.createPageUrl(baseUrl+"/aboutMeCard/aboutMe","index"));
 		aboutMeAboutMeLink.setElementUrl("aboutMe");
 		aboutMeAboutMeLink.setComponentType(BaseComponentTypeEnum.LINK.getType());
 		aboutMeAboutMeLink.setContent("About me");
@@ -52,7 +53,7 @@ public class IndexPage {
 		aboutMeCardChildren.add(aboutMeAboutMeLink);
 		
 		PageObject aboutMeResumeLink = new PageObject();
-		aboutMeResumeLink.setBaseUrl(baseUrl+"/aboutMeCard/resume");
+		aboutMeResumeLink.setBaseUrl(PageObjectUtility.createPageUrl(baseUrl+"/aboutMeCard/resume", "index"));
 		aboutMeResumeLink.setElementUrl("resume");
 		aboutMeResumeLink.setComponentType(BaseComponentTypeEnum.LINK.getType());
 		aboutMeResumeLink.setContent("Resume");
@@ -64,7 +65,7 @@ public class IndexPage {
 		indexContainerChildren.add(aboutMeCard);
 		
 		PageObject projectBlogContainer = new PageObject();
-		projectBlogContainer.setBaseUrl(baseUrl+"/projectBlogContainer");
+		projectBlogContainer.setBaseUrl(PageObjectUtility.createPageUrl(baseUrl+"/projectBlogContainer","index"));
 		projectBlogContainer.setElementUrl("projectBlogContainer");
 		projectBlogContainer.setComponentType(ContainerComponentTypeEnum.COMPONENT_CONTAINER.getType());
 		projectBlogContainer.setStyle("projectBlogContainer");
@@ -72,7 +73,7 @@ public class IndexPage {
 		List<PageObject> projectBlogContainerChildren = new ArrayList<PageObject>();
 		
 		PageObject projectCard = new PageObject();
-		projectCard.setBaseUrl(baseUrl+"/projectBlogContainer/projectCard");
+		projectCard.setBaseUrl(PageObjectUtility.createPageUrl(baseUrl+"/projectBlogContainer/projectCard","index"));
 		projectCard.setElementUrl("projectCard");
 		projectCard.setComponentType(ContainerComponentTypeEnum.CARD.getType());
 		projectCard.setStyle("card projectCard");
@@ -80,7 +81,7 @@ public class IndexPage {
 		List<PageObject> projectCardChildren = new ArrayList<PageObject>();
 		
 		PageObject projectCardImage = new PageObject();
-		projectCardImage.setBaseUrl(baseUrl+"/projectBlogContainer/projectCard/projectCardImage");
+		projectCardImage.setBaseUrl(PageObjectUtility.createPageUrl(baseUrl+"/projectBlogContainer/projectCard/projectCardImage","index"));
 		projectCardImage.setElementUrl("projectCardImage");
 		projectCardImage.setComponentType(BaseComponentTypeEnum.IMAGE.getType());
 		projectCardImage.setContent("images/puzzle.png");
@@ -88,7 +89,7 @@ public class IndexPage {
 		projectCardChildren.add(projectCardImage);
 		
 		PageObject projectCardText = new PageObject();
-		projectCardText.setBaseUrl(baseUrl+"/projectBlogContainer/projectCard/projectCardText");
+		projectCardText.setBaseUrl(PageObjectUtility.createPageUrl(baseUrl+"/projectBlogContainer/projectCard/projectCardText","index"));
 		projectCardText.setElementUrl("projectCardText");
 		projectCardText.setComponentType(BaseComponentTypeEnum.TEXT.getType());
 		projectCardText.setStyle("cart-content");
@@ -96,7 +97,7 @@ public class IndexPage {
 		projectCardChildren.add(projectCardText);
 		
 		PageObject projectCardLink = new PageObject();
-		projectCardLink.setBaseUrl(baseUrl+"/projectBlogContainer/projectCard/singleProjectLink");
+		projectCardLink.setBaseUrl(PageObjectUtility.createPageUrl(baseUrl+"/projectBlogContainer/projectCard/singleProjectLink","index"));
 		projectCardLink.setElementUrl("singleProjectLink");
 		projectCardLink.setComponentType(BaseComponentTypeEnum.LINK.getType());
 		projectCardLink.setStyle("card-action");
@@ -105,7 +106,7 @@ public class IndexPage {
 		projectCardChildren.add(projectCardLink);
 	
 		PageObject projectCardPortfolioLink = new PageObject();
-		projectCardPortfolioLink.setBaseUrl(baseUrl+"/projectBlogContainer/projectCard/projectPortfolioLink");
+		projectCardPortfolioLink.setBaseUrl(PageObjectUtility.createPageUrl(baseUrl+"/projectBlogContainer/projectCard/projectPortfolioLink","index"));
 		projectCardPortfolioLink.setElementUrl("projectPortfolioLink");
 		projectCardPortfolioLink.setComponentType(BaseComponentTypeEnum.LINK.getType());
 		projectCardPortfolioLink.setStyle("card-action");
@@ -118,7 +119,7 @@ public class IndexPage {
 		
 		PageObject blogCard = new PageObject();
 		blogCard.setComponentType(ContainerComponentTypeEnum.CARD.getType());
-		blogCard.setBaseUrl(baseUrl+"/projectBlogContainer/blogCard");
+		blogCard.setBaseUrl(PageObjectUtility.createPageUrl(baseUrl+"/projectBlogContainer/blogCard","index"));
 		blogCard.setElementUrl("blogCard");
 		blogCard.setStyle("card");
 		projectCard.setComponentType(ContainerComponentTypeEnum.CARD.getType());
@@ -127,7 +128,7 @@ public class IndexPage {
 		List<PageObject> blogCardChildren = new ArrayList<PageObject>();
 		
 		PageObject blogCardImage = new PageObject();
-		blogCardImage.setBaseUrl(baseUrl+"/projectBlogContainer/blogCard/blogImage");
+		blogCardImage.setBaseUrl(PageObjectUtility.createPageUrl(baseUrl+"/projectBlogContainer/blogCard/blogImage","index"));
 		blogCardImage.setElementUrl("blogImage");
 		blogCardImage.setComponentType(BaseComponentTypeEnum.IMAGE.getType());
 		blogCardImage.setContent("images/mountain.jpg");
@@ -135,7 +136,7 @@ public class IndexPage {
 		blogCardChildren.add(blogCardImage);
 		
 		PageObject blogCardText = new PageObject();
-		blogCardText.setBaseUrl(baseUrl+"/projectBlogContainer/blogCard/blogText");
+		blogCardText.setBaseUrl(PageObjectUtility.createPageUrl(baseUrl+"/projectBlogContainer/blogCard/blogText","index"));
 		blogCardText.setElementUrl("blogText");
 		blogCardText.setComponentType(BaseComponentTypeEnum.TEXT.getType());
 		blogCardText.setStyle("card-content");
@@ -143,7 +144,7 @@ public class IndexPage {
 		blogCardChildren.add(blogCardText);
 		
 		PageObject blogCardLink = new PageObject();
-		blogCardLink.setBaseUrl(baseUrl+"/projectBlogContainer/blogCard/blogLink");
+		blogCardLink.setBaseUrl(PageObjectUtility.createPageUrl(baseUrl+"/projectBlogContainer/blogCard/blogLink","index"));
 		blogCardLink.setElementUrl("blogLink");
 		blogCardLink.setComponentType(BaseComponentTypeEnum.LINK.getType());
 		blogCardLink.setStyle("card-action");
@@ -152,7 +153,7 @@ public class IndexPage {
 		blogCardChildren.add(blogCardLink);
 	
 		PageObject blogCardArchiveLink = new PageObject();
-		blogCardArchiveLink.setBaseUrl(baseUrl+"/projectBlogContainer/blogCard/archiveLink");
+		blogCardArchiveLink.setBaseUrl(PageObjectUtility.createPageUrl(baseUrl+"/projectBlogContainer/blogCard/archiveLink","index"));
 		blogCardArchiveLink.setElementUrl("archiveLink");
 		blogCardArchiveLink.setComponentType(BaseComponentTypeEnum.LINK.getType());
 		blogCardArchiveLink.setStyle("card-action");
@@ -169,8 +170,8 @@ public class IndexPage {
 		
 		return indexPageObject;	
 	}
-	public static void main(String args[]) throws IOException{
-		File f = new File("/Users/jimmy/Desktop/index.json");
+	public static void main(String args[]) throws Exception{
+		File f = new File(Constants.PAGES_FOLDER_LOCATION+"/index.json");
 		ObjectMapper mapper = new ObjectMapper();
 		PageObject indexPageObject = initIndexPage();
 		mapper.writerWithDefaultPrettyPrinter().writeValue(f, indexPageObject);
