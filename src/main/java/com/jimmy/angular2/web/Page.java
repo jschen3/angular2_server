@@ -16,7 +16,6 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 @RestController
 @CrossOrigin
-@Api(value="page", description="Pages api")
 public class Page {
 	@ApiOperation(value="Gets the specified page")
 	@RequestMapping(value="pages/{page}", method=RequestMethod.GET, produces="application/json")

@@ -48,4 +48,12 @@ public class EditPage {
 		PageObject pageObjectWithAddition=PageObjectUtility.addPageObject(page, componentPath, componentToAdd);
 		PageObjectUtility.savePageObject(pageObjectWithAddition);
 	}
+	
+	@RequestMapping(value="edit/deltePageObject/{page}", method=RequestMethod.POST, produces="application/json")
+	public void deletePageObject(@RequestParam(value="page", required=true) String page, @RequestParam(value="component", required=false) String[] componentArray) throws Exception{
+		List<String> componentPath = PageObjectUtility.toArrayList(componentArray);
+		PageObject pageObjectPageDeleted = PageObjectUtility.deletePageObject(page, componentPath);
+		PageObjectUtility.savePageObject(pageObjectPageDeleted);
+	}
+	
 }

@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -163,5 +164,27 @@ public class PageObjectUtility {
 		else{
 			throw new Exception("Cannot create page url for baseUrl:" + baseUrl + "page: "+ page);
 		}	
+	}
+	public static PageObject deletePageObject(String page, List<String> componentPath) throws Exception {
+		if (componentPath.size()==0){
+			File f = new File(Constants.PAGES_FOLDER_LOCATION+"/"+page+".json");
+			if (f.exists())
+				f.delete();
+			return null;
+		}
+		else{
+			PageObject startingPageObject = getBasePageObject(page);
+			String elementToDelete = componentPath.remove(componentPath.size()-1);
+			PageObject parentObject = getChildPageObject(startingPageObject, componentPath);
+			List<PageObject> childrenObjects=parentObject.getChildPageObjects();
+			Iterator<PageObject> childObjectsIterator = childrenObjects.iterator();
+			while(childObjectsIterator.hasNext()){
+				PageObject childObject = childObjectsIterator.next();
+				if (childObject.getElementUrl().equals(elementToDelete))
+					childObjectsIterator.remove();
+			}
+			parentObject.setChildPageObjects(childrenObjects);
+			return editPageObject(startingPageObject, componentPath, parentObject);
+		}
 	}
 }

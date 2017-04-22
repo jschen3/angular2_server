@@ -1,10 +1,13 @@
 package com.jimmy.angular2;
 
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+
+import com.jimmy.angular2.storage.StorageService;
 
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
@@ -28,5 +31,10 @@ public class Application {
                 .build()
                 .pathMapping("/");
     }
-
+    @Bean
+	CommandLineRunner init(StorageService storageService) {
+    	return (args) -> {
+    		storageService.init();
+    	};
+    }
 }
