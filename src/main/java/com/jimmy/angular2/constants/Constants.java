@@ -5,4 +5,5 @@ public class Constants {
 	public static String PAGES_FOLDER_LOCATION= "pages";
 	public static String STORAGE = "storage";
 	public static String BASE_PAGE_URL = BASE_URL + "/pages";
+	public static String BASE_IMAGE_URL = BASE_URL + "/images/getImage";
 }
