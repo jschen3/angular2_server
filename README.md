@@ -1,4 +1,4 @@
-## angular2_server
+# Angular2 Server
 
 Spring boot rest server for the angular2 website project. Provides a rest server back end to create page objects and page manipulations that are displayed in the angular2 website. 
 
