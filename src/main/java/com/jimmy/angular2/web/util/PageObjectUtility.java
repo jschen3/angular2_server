@@ -103,7 +103,7 @@ public class PageObjectUtility {
 		String newFilePath = Constants.PAGES_FOLDER_LOCATION+"/"+newPageObject.getElementUrl()+".json";
 		ObjectMapper mapper = new ObjectMapper();
 		File pageFile = new File(newFilePath);
-		mapper.writeValue(pageFile, newPageObject);
+		mapper.writerWithDefaultPrettyPrinter().writeValue(pageFile, newPageObject);
 	}
 	
 	public static String pageObjectToJsonComponentString(String pageName, PageObject pageObject) throws Exception{

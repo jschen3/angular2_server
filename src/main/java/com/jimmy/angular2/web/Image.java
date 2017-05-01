@@ -16,8 +16,10 @@ import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.jimmy.angular2.constants.Constants;
 import com.jimmy.angular2.storage.StorageService;
+import com.jimmy.angular2.web.objects.BasicComponentContent;
 import com.jimmy.angular2.web.objects.PageObject;
 import com.jimmy.angular2.web.util.PageObjectUtility;
 
@@ -44,16 +46,20 @@ public class Image {
 		 	storageService.store(file);
 	}
 	
-	@RequestMapping(value="images/{page}", method=RequestMethod.POST)
-	public void uploadImageIntoAPage(@PathVariable("page") String page, @RequestParam(value="component", required=false) String[] componentArray, @RequestParam("file") MultipartFile file) throws Exception{
+	@RequestMapping(value="images/{page}", method=RequestMethod.POST, produces="application/json")
+	public String uploadImageIntoAPage(@PathVariable("page") String page, @RequestParam(value="component", required=false) String[] componentArray, @RequestParam("file") MultipartFile file) throws Exception{
 		storageService.store(file);
 		PageObject imagePageObject = new PageObject();
-		String fileName = file.getName();
+		String fileName = file.getOriginalFilename();
 		List<String> componentPath=PageObjectUtility.toArrayList(componentArray);
 		imagePageObject.setContent(Constants.BASE_IMAGE_URL+"/"+fileName);
 		imagePageObject.setElementUrl(componentPath.remove(componentPath.size()-1));
-		PageObject pageObjectWithAddition=PageObjectUtility.addPageObject(page, componentPath, imagePageObject);
+		PageObject pageObjectWithAddition=PageObjectUtility.editPageObject(page, componentPath, imagePageObject);
 		PageObjectUtility.savePageObject(pageObjectWithAddition);
+		BasicComponentContent bcc = new BasicComponentContent();
+		bcc.setContent(imagePageObject.getContent());
+		ObjectMapper mapper = new ObjectMapper();
+		return mapper.writerWithDefaultPrettyPrinter().writeValueAsString(bcc);
 	}
 	
 	

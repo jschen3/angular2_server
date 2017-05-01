@@ -5,6 +5,7 @@ import java.net.MalformedURLException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
@@ -20,7 +21,7 @@ public class StorageService {
             if (file.isEmpty()) {
                 throw new Exception("Failed to store empty file " + file.getOriginalFilename());
             }
-            Files.copy(file.getInputStream(), rootLocation.resolve(file.getOriginalFilename()));
+            Files.copy(file.getInputStream(), rootLocation.resolve(file.getOriginalFilename()), StandardCopyOption.REPLACE_EXISTING);
         } catch (IOException e) {
             throw new Exception("Failed to store file " + file.getOriginalFilename(), e);
         }
